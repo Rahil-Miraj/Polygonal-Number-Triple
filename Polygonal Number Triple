@@ -1,0 +1,81 @@
+import numpy as np
+s=int(input("s="))
+p=1
+while True:
+    q=1
+    while q<=p:
+        # mn=pq+(s-4) case
+        h=p*q+(s-4)    # h=mn
+        m=1
+        while m<=h:
+            n = h/m
+            x1 = ((p*q+m*n)+(s-4))/(2*(s-2))
+            y1 = (np.abs(p*m-q*n)+(s-4))/(2*(s-2))
+            z1 = ((p*m+q*n)+(s-4))/(2*(s-2))
+            if  h%m==0:
+                if  m*n%(s-2)==0:
+                    qn1=q*n
+                    pm1=p*m-2
+                    qn2=q*n-2
+                    pm2=p*m
+                    if  (p*m>q*n and qn1%(s-2)==0 and pm1%(s-2)==0
+                            and (pm1/(s-2)-qn1/(s-2)+1)%2==0):
+                        print("For mn=pq+(s-4)")
+                        print("(p,q,m,n)=",(p,q,m,n))
+                        print("(x,y,z)=",(x1,y1,z1))
+
+                        print()
+                        m+=1
+                    elif (p*m<q*n and qn2%(s-2)==0 and pm2%(s-2)==0
+                          and (pm2/(s-2)-qn2/(s-2)+1)%2==0):
+                        print("For mn=pq+(s-4)")
+                        print("(p,q,m,n)=", (p, q, m, n))
+                        print("(x,y,z)=", (x1, y1, z1))
+
+                        print()
+                        m+=1
+                    else:
+                        m+=1
+                else:
+                    m+=1
+            else:
+                m+=1
+
+        # mn=pq-(s-4) case
+        g=p*q-(s-4)  # g=mn , r=m , u=n
+        r=1
+        while r<=g:
+            u=g/r
+            x2 = ((p*q+r*u)+(s-4))/(2*(s-2))
+            y2 = (np.abs(p*r-q*u)+(s-4))/(2*(s-2))
+            z2 = ((p*r+q*u)+(s-4))/(2*(s-2))
+            if g%r==0:
+                if  p*q%(s-2)==0:
+                    qn3 = q * u
+                    pm3 = p * r - 2
+                    qn4 = q * u - 2
+                    pm4 = p * r
+                    if  (p*r>q*u and qn3%(s-2)==0 and pm3%(s-2)==0
+                            and (pm3/(s-2)-qn3/(s-2)+1)%2==0):
+                        print("For mn=pq-(s-4)")
+                        print("(p,q,m,n)=",(p,q,r,u))
+                        print("(x,y,z)=",(x2,y2,z2))
+
+                        print()
+                        r+=1
+                    elif (p*r<q*u and qn4%(s-2)==0 and pm4%(s-2)==0
+                          and (pm4/(s-2)-qn4/(s-2)+1)%2==0):
+                        print("For mn=pq-(s-4)")
+                        print("(p,q,m,n)=", (p, q, r, u))
+                        print("(x,y,z)=", (x2, y2, z2))
+
+                        print()
+                        r += 1
+                    else:
+                        r+=1
+                else:
+                    r+=1
+            else:
+                r+=1
+        q+=1
+    p+=1
